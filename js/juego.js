@@ -8,12 +8,12 @@ texto COMPLETAR que deben completarse segun lo indique la consigna.
 El objeto Juego contiene mucho codigo. Tomate tu tiempo para leerlo tranquilo
 y entender que es lo que hace en cada una de sus partes. */
 
-var rangoMovSup= [
-      desdeX= 20, 
-      hastaX= 940, 
-      desdeY= 20, 
-      hastaY= 500
-    ];
+var rangoMovSup= {"desdeX": 0, 
+"hastaX": 960, 
+"desdeY": 50, 
+"hastaY": 350};
+      
+   
 
 var Juego = {
   // Aca se configura el tamanio del canvas del juego
@@ -28,8 +28,10 @@ var Juego = {
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
     new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1),
-    //new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1)
-
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 850, 230, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 300, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 390, 400, 30, 30, 1),
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
@@ -52,8 +54,10 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    new ZombieCaminante('imagenes/zombie1.png',70,460,20,20,1,),
-    new ZombieCaminante('imagenes/zombie2.png',100,460,20,20,1,),
+    new ZombieCaminante('imagenes/zombie1.png',961,100,20,20,5,rangoMovSup),
+    new ZombieCaminante('imagenes/zombie2.png',960,100,20,20,1,rangoMovSup),
+    new ZombieCaminante('imagenes/zombie3.png',958,300,20,20,1,rangoMovSup),
+    new ZombieCaminante('imagenes/zombie4.png',957,550,20,20,1,rangoMovSup),
   ]
 
 }
@@ -139,8 +143,8 @@ Juego.capturarMovimiento = function(tecla) {
   if (this.chequearColisiones(movX + this.jugador.x, movY + this.jugador.y)) {
     /* Aca tiene que estar la logica para mover al jugador invocando alguno
     de sus metodos  */
-
     /* COMPLETAR */
+    this.jugador.mover(movX,movY);
   }
 };
 
@@ -185,6 +189,10 @@ un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function() {
   /* COMPLETAR */
+  this.enemigos.forEach(function(enemigo){
+    enemigo.mover();
+  });
+
 };
 
 /* Recorre los enemigos para ver cual esta colisionando con el jugador
