@@ -8,13 +8,30 @@ texto COMPLETAR que deben completarse segun lo indique la consigna.
 El objeto Juego contiene mucho codigo. Tomate tu tiempo para leerlo tranquilo
 y entender que es lo que hace en cada una de sus partes. */
 
-var rangoMovSup= {"desdeX": 0, 
-"hastaX": 960, 
-"desdeY": 50, 
-"hastaY": 350};
-      
-   
-
+var rangoMovSup= {
+  "desdeX": 0, 
+  "hastaX": 960, 
+  "desdeY": 50, 
+  "hastaY": 350
+};
+var rangoMovConductorVertical1 = { 
+  "desdeX": 635,
+  "hastaX": 635,
+  "desdeY": 0,
+  "hastaY": 577
+};
+var rangoMovConductorVertical2 = { 
+  "desdeX": 635,
+  "hastaX": 635,
+  "desdeY": 0,
+  "hastaY": 577
+};
+var rangoMovConductorHorizontal = {
+  "desdeX": 0,
+  "hastaX": 960,
+  "desdeY": 400,
+  "hastaY": 400  
+};
 var Juego = {
   // Aca se configura el tamanio del canvas del juego
   anchoCanvas: 961,
@@ -27,11 +44,14 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
+    new Obstaculo('imagenes/bache.png', 70, 230, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 850, 230, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 300, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 390, 400, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 550, 400, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 550, 450, 30, 15, 1),
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
@@ -58,6 +78,10 @@ var Juego = {
     new ZombieCaminante('imagenes/zombie2.png',960,100,20,20,1,rangoMovSup),
     new ZombieCaminante('imagenes/zombie3.png',958,300,20,20,1,rangoMovSup),
     new ZombieCaminante('imagenes/zombie4.png',957,550,20,20,1,rangoMovSup),
+    new ZombieConductor('imagenes/tren_vertical.png', 635, 20, 35, 95, 5, rangoMovConductorVertical1, "vertical"),
+    new ZombieConductor('imagenes/tren_vertical.png', 660, 20, 30, 65, 10,rangoMovConductorVertical2, "vertical"),
+    new ZombieConductor('imagenes/tren_vertical.png', 680, 20, 35, 95, 5, rangoMovConductorVertical1, "vertical"),
+    new ZombieConductor('imagenes/tren_horizontal.png', 20, 315, 75, 35, 15, rangoMovConductorHorizontal, "horizontal")
   ]
 
 }
@@ -204,9 +228,11 @@ Juego.calcularAtaques = function() {
     if (this.intersecan(enemigo, this.jugador, this.jugador.x, this.jugador.y)) {
       /* Si el enemigo colisiona debe empezar su ataque
       COMPLETAR */
+      enemigo.comenzarAtaque(this.jugador);
     } else {
       /* Sino, debe dejar de atacar
       COMPLETAR */
+      enemigo.dejarDeAtacar();
     }
   }, this);
 };

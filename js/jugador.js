@@ -18,23 +18,30 @@ Jugador.mover = function(nx, ny) {
   this.y += ny;
   if (ny < 0){
     this.sprite ='imagenes/auto_rojo_arriba.png';
+    this.ancho = 15;
+    this.alto = 30;
   }
   else if (ny > 0)
   {
     this.sprite ='imagenes/auto_rojo_abajo.png';
+    this.ancho = 15;
+    this.alto = 30;
   }
   else if (nx < 0)
   {
     this.sprite ='imagenes/auto_rojo_izquierda.png';
+    this.ancho = 30;
+    this.alto = 15;
   }
   else if (nx > 0)
   {
     this.sprite ='imagenes/auto_rojo_derecha.png';
+    this.ancho = 30;
+    this.alto = 15;
   }
 }
-
-Jugador.perderVida = function(){
-  this.vidas -=1;
+Jugador.perderVidas = function(cantVidas){
+  this.vidas = this.vidas - cantVidas;
 }
 
 
