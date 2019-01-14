@@ -14,6 +14,12 @@ var rangoMovSup= {
   "desdeY": 50, 
   "hastaY": 350
 };
+var rangoMovInf= {
+  "desdeX": 0, 
+  "hastaX": 960, 
+  "desdeY": 350, 
+  "hastaY": 550
+};
 var rangoMovConductorVertical1 = { 
   "desdeX": 635,
   "hastaX": 635,
@@ -44,33 +50,34 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/bache.png', 70, 230, 30, 30, 1),
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1),
-    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1),
-    new Obstaculo('imagenes/valla_horizontal.png', 850, 230, 30, 30, 1),
-    new Obstaculo('imagenes/valla_vertical.png', 300, 430, 30, 30, 1),
-    new Obstaculo('imagenes/valla_vertical.png', 390, 400, 30, 30, 1),
-    new Obstaculo('imagenes/bache.png', 550, 400, 30, 30, 1),
-    new Obstaculo('imagenes/auto_verde_derecha.png', 550, 450, 30, 15, 2),
+    new Obstaculo('imagenes/bache.png', 70, 230, 30, 30, 1, false),
+    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1, false),
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1, false),
+    new Obstaculo('imagenes/valla_horizontal.png', 850, 230, 30, 30, 1, false),
+    new Obstaculo('imagenes/valla_vertical.png', 300, 430, 30, 30, 1, false),
+    //new Obstaculo('imagenes/valla_vertical.png', 390, 400, 30, 30, 1, false),
+    new Obstaculo('imagenes/bache.png', 550, 400, 30, 30, 1, false),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 450, 450, 30, 15, 2, false),
+    new Obstaculo('imagenes/inmune.png', 500, 450, 20, 20, 2, true),
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
    que son invisibles. No tenes que preocuparte por ellos.*/
   bordes: [
     // // Bordes
-    new Obstaculo('', 0, 5, 961, 18, 0),
-    new Obstaculo('', 0, 559, 961, 18, 0),
-    new Obstaculo('', 0, 5, 18, 572, 0),
-    new Obstaculo('', 943, 5, 18, 572, 0),
+    new Obstaculo('', 0, 5, 961, 18, 0, false),
+    new Obstaculo('', 0, 559, 961, 18, 0, false),
+    new Obstaculo('', 0, 5, 18, 572, 0, false),
+    new Obstaculo('', 943, 5, 18, 572, 0, false),
     // Veredas
-    new Obstaculo('', 18, 23, 51, 536, 2),
-    new Obstaculo('', 69, 507, 690, 52, 2),
-    new Obstaculo('', 587, 147, 173, 360, 2),
-    new Obstaculo('', 346, 147, 241, 52, 2),
-    new Obstaculo('', 196, 267, 263, 112, 2),
-    new Obstaculo('', 196, 23, 83, 244, 2),
-    new Obstaculo('', 279, 23, 664, 56, 2),
-    new Obstaculo('', 887, 79, 56, 480, 2)
+    new Obstaculo('', 18, 23, 51, 536, 0, false),
+    new Obstaculo('', 69, 507, 690, 52, 0, false),
+    new Obstaculo('', 587, 147, 173, 360, 0, false),
+    new Obstaculo('', 346, 147, 241, 52, 0, false),
+    new Obstaculo('', 196, 267, 263, 112, 0, false),
+    new Obstaculo('', 196, 23, 83, 244, 0, false),
+    new Obstaculo('', 279, 23, 664, 56, 0, false),
+    new Obstaculo('', 887, 79, 56, 480, 0, false)
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
@@ -78,6 +85,7 @@ var Juego = {
     new ZombieCaminante('imagenes/zombie2.png',960,100,20,20,1,rangoMovSup, 1),
     new ZombieCaminante('imagenes/zombie3.png',958,300,20,20,1,rangoMovSup, 1),
     new ZombieCaminante('imagenes/zombie4.png',957,550,20,20,1,rangoMovSup, 1),
+    new ZombieCaminante('imagenes/zombie4.png',490,450,20,20,1,rangoMovInf, 1),
     new ZombieConductor('imagenes/tren_vertical.png', 635, 20, 35, 95, 5, rangoMovConductorVertical1, 0, "vertical"),
     new ZombieConductor('imagenes/tren_vertical.png', 660, 20, 30, 65, 10,rangoMovConductorVertical2, 0, "vertical"),
     new ZombieConductor('imagenes/tren_vertical.png', 680, 20, 35, 95, 5, rangoMovConductorVertical1, 0, "vertical"),
@@ -109,7 +117,8 @@ Juego.iniciarRecursos = function() {
     'imagenes/auto_rojo_izquierda.png',
     'imagenes/auto_verde_abajo.png',
     'imagenes/auto_verde_derecha.png',
-    'imagenes/llegada.png',
+    'imagenes/rayo.png',
+    'imagenes/inmune.png',
   ]);
   Resources.onReady(this.comenzar.bind(Juego));
 };
