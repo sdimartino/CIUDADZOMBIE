@@ -40,8 +40,13 @@ Jugador.mover = function(nx, ny) {
     this.alto = 15;
   }
 }
-Jugador.perderVidas = function(cantVidas){
-  this.vidas = this.vidas - cantVidas;
+Jugador.perderVidas = function(cantVidas, esLetal){
+  if (esLetal){
+    this.vidas = 0;
+  }
+  else {
+    this.vidas = this.vidas - cantVidas;
+  }
 }
 
 

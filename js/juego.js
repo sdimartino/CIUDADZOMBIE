@@ -51,7 +51,7 @@ var Juego = {
     new Obstaculo('imagenes/valla_vertical.png', 300, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 390, 400, 30, 30, 1),
     new Obstaculo('imagenes/bache.png', 550, 400, 30, 30, 1),
-    new Obstaculo('imagenes/auto_verde_derecha.png', 550, 450, 30, 15, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 550, 450, 30, 15, 2),
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
@@ -74,16 +74,15 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    new ZombieCaminante('imagenes/zombie1.png',961,100,20,20,5,rangoMovSup),
-    new ZombieCaminante('imagenes/zombie2.png',960,100,20,20,1,rangoMovSup),
-    new ZombieCaminante('imagenes/zombie3.png',958,300,20,20,1,rangoMovSup),
-    new ZombieCaminante('imagenes/zombie4.png',957,550,20,20,1,rangoMovSup),
-    new ZombieConductor('imagenes/tren_vertical.png', 635, 20, 35, 95, 5, rangoMovConductorVertical1, "vertical"),
-    new ZombieConductor('imagenes/tren_vertical.png', 660, 20, 30, 65, 10,rangoMovConductorVertical2, "vertical"),
-    new ZombieConductor('imagenes/tren_vertical.png', 680, 20, 35, 95, 5, rangoMovConductorVertical1, "vertical"),
-    new ZombieConductor('imagenes/tren_horizontal.png', 20, 315, 75, 35, 15, rangoMovConductorHorizontal, "horizontal")
+    new ZombieCaminante('imagenes/zombie1.png',961,100,20,20,5,rangoMovSup, 2),
+    new ZombieCaminante('imagenes/zombie2.png',960,100,20,20,1,rangoMovSup, 1),
+    new ZombieCaminante('imagenes/zombie3.png',958,300,20,20,1,rangoMovSup, 1),
+    new ZombieCaminante('imagenes/zombie4.png',957,550,20,20,1,rangoMovSup, 1),
+    new ZombieConductor('imagenes/tren_vertical.png', 635, 20, 35, 95, 5, rangoMovConductorVertical1, 0, "vertical"),
+    new ZombieConductor('imagenes/tren_vertical.png', 660, 20, 30, 65, 10,rangoMovConductorVertical2, 0, "vertical"),
+    new ZombieConductor('imagenes/tren_vertical.png', 680, 20, 35, 95, 5, rangoMovConductorVertical1, 0, "vertical"),
+    new ZombieConductor('imagenes/tren_horizontal.png', 20, 315, 75, 35, 15, rangoMovConductorHorizontal, 0, "horizontal")
   ]
-
 }
 
 /* Se cargan los recursos de las imagenes, para tener un facil acceso
@@ -109,7 +108,8 @@ Juego.iniciarRecursos = function() {
     'imagenes/auto_rojo_derecha.png',
     'imagenes/auto_rojo_izquierda.png',
     'imagenes/auto_verde_abajo.png',
-    'imagenes/auto_verde_derecha.png'
+    'imagenes/auto_verde_derecha.png',
+    'imagenes/llegada.png',
   ]);
   Resources.onReady(this.comenzar.bind(Juego));
 };
@@ -129,7 +129,6 @@ Juego.comenzar = function() {
 };
 
 Juego.buclePrincipal = function() {
-
   // Con update se actualiza la logica del juego, tanto ataques como movimientos
   this.update();
   // Funcion que dibuja por cada fotograma a los objetos en pantalla.
@@ -178,11 +177,9 @@ Juego.dibujar = function() {
   //Se pinta la imagen de fondo segun el estado del juego
   this.dibujarFondo();
 
-
   /* Aca hay que agregar la logica para poder dibujar al jugador principal
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
-  
   /* Completar */
   Dibujante.dibujarEntidad(this.jugador);
 
@@ -204,6 +201,35 @@ Juego.dibujar = function() {
     var x = tamanio * i
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
+
+  //dibuja llegada
+  Dibujante.dibujarRectangulo('white',760,500,10,10);
+  Dibujante.dibujarRectangulo('black',770,500,10,10);
+  Dibujante.dibujarRectangulo('white',780,500,10,10);
+  Dibujante.dibujarRectangulo('black',790,500,10,10);
+  Dibujante.dibujarRectangulo('white',800,500,10,10);
+  Dibujante.dibujarRectangulo('black',810,500,10,10);
+  Dibujante.dibujarRectangulo('white',820,500,10,10);
+  Dibujante.dibujarRectangulo('black',830,500,10,10);
+  Dibujante.dibujarRectangulo('white',840,500,10,10);
+  Dibujante.dibujarRectangulo('black',850,500,10,10);
+  Dibujante.dibujarRectangulo('white',860,500,10,10);
+  Dibujante.dibujarRectangulo('black',870,500,10,10);
+  Dibujante.dibujarRectangulo('white',880,500,10,10);
+  
+  Dibujante.dibujarRectangulo('black',760,510,10,10);
+  Dibujante.dibujarRectangulo('white',770,510,10,10);
+  Dibujante.dibujarRectangulo('black',780,510,10,10);
+  Dibujante.dibujarRectangulo('white',790,510,10,10);
+  Dibujante.dibujarRectangulo('black',800,510,10,10);
+  Dibujante.dibujarRectangulo('white',810,510,10,10);
+  Dibujante.dibujarRectangulo('black',820,510,10,10);
+  Dibujante.dibujarRectangulo('white',830,510,10,10);
+  Dibujante.dibujarRectangulo('black',840,510,10,10);
+  Dibujante.dibujarRectangulo('white',850,510,10,10);
+  Dibujante.dibujarRectangulo('black',860,510,10,10);
+  Dibujante.dibujarRectangulo('white',870,510,10,10);
+  Dibujante.dibujarRectangulo('black',880,510,10,10);
 };
 
 
@@ -247,7 +273,7 @@ Juego.chequearColisiones = function(x, y) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
 
       /*COMPLETAR, obstaculo debe chocar al jugador*/
-
+      obstaculo.chocar(this.jugador);
       puedeMoverse = false
     }
   }, this)

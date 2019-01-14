@@ -13,7 +13,7 @@ velocidad: es la velocidad de movimiento, pixeles que podra moverse en cada mov
 rangoMov: los limites en el mapa donde se puede mover, sera un diccionario con la
 siguiente forma: {desdeX: valor, hastaX: valor, desdeY: valor, hastaY: valor} */
 
-var Enemigo = function (sprite, x, y, ancho, alto, velocidad, rangoMov) {
+var Enemigo = function (sprite, x, y, ancho, alto, velocidad, rangoMov, intensidadAtaque) {
   this.sprite = sprite;
   this.x = x;
   this.y = y;
@@ -22,12 +22,13 @@ var Enemigo = function (sprite, x, y, ancho, alto, velocidad, rangoMov) {
   this.velocidad = velocidad;
   this.rangoMov = rangoMov;
   this.atacando = false;
+  this.intensidadAtaque = intensidadAtaque;
 }
 
 /* Por defecto, un enemigo sabe responder al mensaje de atacar
 sacando una vida al jugador.*/
 Enemigo.prototype.atacar = function (jugador) {
-  jugador.perderVidas(1);
+  jugador.perderVidas(this.intensidadAtaque,false);
 }
 
 /* Este metodo sirve para no estar atacando continuamente al jugador. Solo va a
