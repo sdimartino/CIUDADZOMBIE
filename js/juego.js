@@ -50,15 +50,15 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/bache.png', 70, 230, 30, 30, 1, false),
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1, false),
-    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1, false),
-    new Obstaculo('imagenes/valla_horizontal.png', 850, 230, 30, 30, 1, false),
-    new Obstaculo('imagenes/valla_vertical.png', 300, 430, 30, 30, 1, false),
-    //new Obstaculo('imagenes/valla_vertical.png', 390, 400, 30, 30, 1, false),
+    new Obstaculo('imagenes/bache.png', 150, 270, 30, 30, 1, false),
+    new Obstaculo('imagenes/valla_horizontal.png', 770, 430, 20, 20, 1, false),
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 20, 20, 1, false),
+    new Obstaculo('imagenes/valla_horizontal.png', 850, 230, 20, 20, 1, false),
+    new Obstaculo('imagenes/valla_vertical.png', 300, 430, 20, 20, 1, false),
+    new Obstaculo('imagenes/valla_vertical.png', 390, 80, 30, 20, 1, false),
     new Obstaculo('imagenes/bache.png', 550, 400, 30, 30, 1, false),
     new Obstaculo('imagenes/auto_verde_derecha.png', 450, 450, 30, 15, 2, false),
-    new Obstaculo('imagenes/inmune.png', 500, 450, 20, 20, 2, true),
+    new Obstaculo('imagenes/inmune.png', 350, 450, 20, 20, 2, true),
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
    Ya estan ubicados en sus lugares correspondientes. Ya aparecen en el mapa, ya
@@ -82,10 +82,10 @@ var Juego = {
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
     new ZombieCaminante('imagenes/zombie1.png',961,100,20,20,5,rangoMovSup, 2),
-    new ZombieCaminante('imagenes/zombie2.png',960,100,20,20,1,rangoMovSup, 1),
-    new ZombieCaminante('imagenes/zombie3.png',958,300,20,20,1,rangoMovSup, 1),
-    new ZombieCaminante('imagenes/zombie4.png',957,550,20,20,1,rangoMovSup, 1),
-    new ZombieCaminante('imagenes/zombie4.png',490,450,20,20,1,rangoMovInf, 1),
+    new ZombieCaminante('imagenes/zombie2.png',960,100,10,10,1,rangoMovSup, 1),
+    new ZombieCaminante('imagenes/zombie3.png',958,300,10,10,1,rangoMovSup, 1),
+    new ZombieCaminante('imagenes/zombie4.png',957,550,10,10,1,rangoMovSup, 1),
+    new ZombieCaminante('imagenes/zombie4.png',490,450,10,10,1,rangoMovInf, 1),
     new ZombieConductor('imagenes/tren_vertical.png', 635, 20, 35, 95, 5, rangoMovConductorVertical1, 0, "vertical"),
     new ZombieConductor('imagenes/tren_vertical.png', 660, 20, 30, 65, 10,rangoMovConductorVertical2, 0, "vertical"),
     new ZombieConductor('imagenes/tren_vertical.png', 680, 20, 35, 95, 5, rangoMovConductorVertical1, 0, "vertical"),
