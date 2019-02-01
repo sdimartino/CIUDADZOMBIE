@@ -190,55 +190,57 @@ Juego.dibujar = function() {
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
   /* Completar */
-  Dibujante.dibujarEntidad(this.jugador);
+  if (!this.ganador ){
+        Dibujante.dibujarEntidad(this.jugador);
 
-  // Se recorren los obstaculos de la carretera pintandolos
-  this.obstaculosCarretera.forEach(function(obstaculo) {
-    Dibujante.dibujarEntidad(obstaculo);
-  });
-
-  // Se recorren los enemigos pintandolos
-  this.enemigos.forEach(function(enemigo) {
-    /* Completar */
-    Dibujante.dibujarEntidad(enemigo);
-  });
-
-  // El dibujante dibuja las vidas del jugador
-  var tamanio = this.anchoCanvas / this.vidasInicial;
-  Dibujante.dibujarRectangulo('white', 0, 0, this.anchoCanvas, 8);
-  for (var i = 0; i < this.jugador.vidas; i++) {
-    var x = tamanio * i
-    Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
+        // Se recorren los obstaculos de la carretera pintandolos
+        this.obstaculosCarretera.forEach(function(obstaculo) {
+          Dibujante.dibujarEntidad(obstaculo);
+        });
+      
+        // Se recorren los enemigos pintandolos
+        this.enemigos.forEach(function(enemigo) {
+          /* Completar */
+          Dibujante.dibujarEntidad(enemigo);
+        });
+      
+        // El dibujante dibuja las vidas del jugador
+        var tamanio = this.anchoCanvas / this.vidasInicial;
+        Dibujante.dibujarRectangulo('white', 0, 0, this.anchoCanvas, 8);
+        for (var i = 0; i < this.jugador.vidas; i++) {
+          var x = tamanio * i
+          Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
+        }
+      
+        //dibuja llegada
+        Dibujante.dibujarRectangulo('white',760,500,10,10);
+        Dibujante.dibujarRectangulo('black',770,500,10,10);
+        Dibujante.dibujarRectangulo('white',780,500,10,10);
+        Dibujante.dibujarRectangulo('black',790,500,10,10);
+        Dibujante.dibujarRectangulo('white',800,500,10,10);
+        Dibujante.dibujarRectangulo('black',810,500,10,10);
+        Dibujante.dibujarRectangulo('white',820,500,10,10);
+        Dibujante.dibujarRectangulo('black',830,500,10,10);
+        Dibujante.dibujarRectangulo('white',840,500,10,10);
+        Dibujante.dibujarRectangulo('black',850,500,10,10);
+        Dibujante.dibujarRectangulo('white',860,500,10,10);
+        Dibujante.dibujarRectangulo('black',870,500,10,10);
+        Dibujante.dibujarRectangulo('white',880,500,10,10);
+        
+        Dibujante.dibujarRectangulo('black',760,510,10,10);
+        Dibujante.dibujarRectangulo('white',770,510,10,10);
+        Dibujante.dibujarRectangulo('black',780,510,10,10);
+        Dibujante.dibujarRectangulo('white',790,510,10,10);
+        Dibujante.dibujarRectangulo('black',800,510,10,10);
+        Dibujante.dibujarRectangulo('white',810,510,10,10);
+        Dibujante.dibujarRectangulo('black',820,510,10,10);
+        Dibujante.dibujarRectangulo('white',830,510,10,10);
+        Dibujante.dibujarRectangulo('black',840,510,10,10);
+        Dibujante.dibujarRectangulo('white',850,510,10,10);
+        Dibujante.dibujarRectangulo('black',860,510,10,10);
+        Dibujante.dibujarRectangulo('white',870,510,10,10);
+        Dibujante.dibujarRectangulo('black',880,510,10,10);
   }
-
-  //dibuja llegada
-  Dibujante.dibujarRectangulo('white',760,500,10,10);
-  Dibujante.dibujarRectangulo('black',770,500,10,10);
-  Dibujante.dibujarRectangulo('white',780,500,10,10);
-  Dibujante.dibujarRectangulo('black',790,500,10,10);
-  Dibujante.dibujarRectangulo('white',800,500,10,10);
-  Dibujante.dibujarRectangulo('black',810,500,10,10);
-  Dibujante.dibujarRectangulo('white',820,500,10,10);
-  Dibujante.dibujarRectangulo('black',830,500,10,10);
-  Dibujante.dibujarRectangulo('white',840,500,10,10);
-  Dibujante.dibujarRectangulo('black',850,500,10,10);
-  Dibujante.dibujarRectangulo('white',860,500,10,10);
-  Dibujante.dibujarRectangulo('black',870,500,10,10);
-  Dibujante.dibujarRectangulo('white',880,500,10,10);
-  
-  Dibujante.dibujarRectangulo('black',760,510,10,10);
-  Dibujante.dibujarRectangulo('white',770,510,10,10);
-  Dibujante.dibujarRectangulo('black',780,510,10,10);
-  Dibujante.dibujarRectangulo('white',790,510,10,10);
-  Dibujante.dibujarRectangulo('black',800,510,10,10);
-  Dibujante.dibujarRectangulo('white',810,510,10,10);
-  Dibujante.dibujarRectangulo('black',820,510,10,10);
-  Dibujante.dibujarRectangulo('white',830,510,10,10);
-  Dibujante.dibujarRectangulo('black',840,510,10,10);
-  Dibujante.dibujarRectangulo('white',850,510,10,10);
-  Dibujante.dibujarRectangulo('black',860,510,10,10);
-  Dibujante.dibujarRectangulo('white',870,510,10,10);
-  Dibujante.dibujarRectangulo('black',880,510,10,10);
 };
 
 
@@ -327,7 +329,12 @@ Juego.terminoJuego = function() {
 
 /* Se gana el juego si se sobre pasa cierto altura y */
 Juego.ganoJuego = function() {
-  return (this.jugador.y + this.jugador.alto) > 530;
+  var rta = false;
+  if ((this.jugador.y + this.jugador.alto) > 530){
+    rta =true;
+    this.ganador=true;
+  }
+  return rta;
 };
 
 Juego.iniciarRecursos();
